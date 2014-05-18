@@ -19,8 +19,8 @@ loc_test = "../Data/testHistory"
 
 # will be created
 loc_reduced = "../Data/reduced.csv" 
-loc_out_train = "../Data/train-0512.vw"
-loc_out_test = "../Data/test-0512.vw"
+loc_out_train = "../Data/train-0518.vw"
+loc_out_test = "../Data/test-0518.vw"
 
 # feature set
 loc_agg_txn_product = "../Data/aggregation/agg_txns_by_product"
@@ -43,8 +43,8 @@ loc_agg_txn_company_dept = "../Data/aggregation/agg_txns_by_company_dept"
 loc_agg_txn_chain_company_dept = "../Data/aggregation/agg_txns_by_chain_company_dept"
 loc_agg_txn_dept_brand = "../Data/aggregation/agg_txns_by_dept_brand"
 loc_agg_txn_chain_dept_brand = "../Data/aggregation/agg_txns_by_chain_dept_brand"
-loc_agg_txn_customer_dept = "../Data/aggregation/agg_txns_by_customer_dept"
-loc_agg_txn_product_dept = "../Data/aggregation/agg_txns_by_product_dept"
+loc_agg_txn_customer_dept = "../Data/aggregation/agg_txns_by_customer_dept_all"
+loc_agg_txn_product_dept = "../Data/aggregation/agg_txns_by_product_dept_all"
 
 def diff_days(s1,s2):
 	date_format = "%Y-%m-%d"
@@ -332,12 +332,12 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 					#features['chain_dept_brand_average_txn'] = float(agg_txn_by_chain_dept_brand[key][4])/float(agg_txn_by_chain_dept_brand[key][3])
 					#features['chain_dept_brand_average_quantity'] = float(agg_txn_by_chain_dept_brand[key][5])/float(agg_txn_by_chain_dept_brand[key][3])
 
-					product_key = ','.join([offers[history[2]][3],offers[history[2]][1],offers[history[2]][5]])
-					dept = agg_txn_by_product_dept[product_key][3]
-					key = ','.join([last_id,dept])
-					if key in agg_txn_by_customer_dept:
-						features['customer_dept_num_of_product'] = agg_txn_by_customer_dept[key][2]
-						features['customer_dept_num_of_txn'] = agg_txn_by_customer_dept[key][3]
+					#product_key = ','.join([offers[history[2]][3],offers[history[2]][1],offers[history[2]][5]])
+					#dept = agg_txn_by_product_dept[product_key][3]
+					#key = ','.join([last_id,dept])
+					#if key in agg_txn_by_customer_dept:
+					#	features['customer_dept_num_of_product'] = agg_txn_by_customer_dept[key][2]
+					#	features['customer_dept_num_of_txn'] = agg_txn_by_customer_dept[key][3]
 					#features['chain_dept_brand_average_txn'] = float(agg_txn_by_chain_dept_brand[key][4])/float(agg_txn_by_chain_dept_brand[key][3])
 					#features['chain_dept_brand_average_quantity'] = float(agg_txn_by_chain_dept_brand[key][5])/float(agg_txn_by_chain_dept_brand[key][3])
 
@@ -346,21 +346,33 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 					#generate negative features
 					if "has_bought_company" not in features:
 						features['never_bought_company'] = 1
+					else:
+						features['never_bought_company'] = 0
 					
 					if "has_bought_category" not in features:
 						features['never_bought_category'] = 1
+					else:
+						features['never_bought_category'] = 0
 						
 					if "has_bought_brand" not in features:
 						features['never_bought_brand'] = 1
+					else:
+						features['never_bought_brand'] = 0
 						
 					if "has_bought_brand" in features and "has_bought_category" in features and "has_bought_company" in features:
 						features['has_bought_brand_company_category'] = 1
+					else:
+						features['has_bought_brand_company_category'] = 0
 					
 					if "has_bought_brand" in features and "has_bought_category" in features:
 						features['has_bought_brand_category'] = 1
+					else:
+						features['has_bought_brand_category'] = 0
 					
 					if "has_bought_brand" in features and "has_bought_company" in features:
 						features['has_bought_brand_company'] = 1
+					else:
+						features['has_bought_brand_company'] = 0
 						
 					outline = ""
 					test = False
@@ -410,6 +422,21 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 					
 					features['total_spend'] += float( row[10] )
 					
+					features['has_bought_company'] = 0.0
+					features['has_bought_company_q'] = 0.0
+					features['has_bought_company_a'] = 0.0
+					features['has_bought_company_30'] = 0.0
+					features['has_bought_company_q_30'] = 0.0
+					features['has_bought_company_a_30'] = 0.0
+					features['has_bought_company_60'] = 0.0
+					features['has_bought_company_q_60'] = 0.0
+					features['has_bought_company_a_60'] = 0.0
+					features['has_bought_company_90'] = 0.0
+					features['has_bought_company_q_90'] = 0.0
+					features['has_bought_company_a_90'] = 0.0
+					features['has_bought_company_180'] = 0.0
+					features['has_bought_company_q_180'] = 0.0
+					features['has_bought_company_a_180'] = 0.0
 					if offers[ history[2] ][3] == row[4]:
 						features['has_bought_company'] += 1.0
 						features['has_bought_company_q'] += float( row[9] )
@@ -433,8 +460,23 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 							features['has_bought_company_q_180'] += float( row[9] )
 							features['has_bought_company_a_180'] += float( row[10] )
 					
-					if offers[ history[2] ][1] == row[3]:
-						
+
+					features['has_bought_category'] = 0.0
+					features['has_bought_category_q'] = 0.0
+					features['has_bought_category_a'] = 0.0
+					features['has_bought_category_30'] = 0.0
+					features['has_bought_category_q_30'] = 0.0
+					features['has_bought_category_a_30'] = 0.0
+					features['has_bought_category_60'] = 0.0
+					features['has_bought_category_q_60'] = 0.0
+					features['has_bought_category_a_60'] = 0.0
+					features['has_bought_category_90'] = 0.0
+					features['has_bought_category_q_90'] = 0.0
+					features['has_bought_category_a_90'] = 0.0
+					features['has_bought_category_180'] = 0.0
+					features['has_bought_category_q_180'] = 0.0
+					features['has_bought_category_a_180'] = 0.0
+					if offers[ history[2] ][1] == row[3]:	
 						features['has_bought_category'] += 1.0
 						features['has_bought_category_q'] += float( row[9] )
 						features['has_bought_category_a'] += float( row[10] )
@@ -455,6 +497,22 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 							features['has_bought_category_180'] += 1.0
 							features['has_bought_category_q_180'] += float( row[9] )
 							features['has_bought_category_a_180'] += float( row[10] )				
+					
+					features['has_bought_brand'] = 0.0
+					features['has_bought_brand_q'] = 0.0
+					features['has_bought_brand_a'] = 0.0
+					features['has_bought_brand_30'] = 0.0
+					features['has_bought_brand_q_30'] = 0.0
+					features['has_bought_brand_a_30'] = 0.0
+					features['has_bought_brand_60'] = 0.0
+					features['has_bought_brand_q_60'] = 0.0
+					features['has_bought_brand_a_60'] = 0.0
+					features['has_bought_brand_90'] = 0.0
+					features['has_bought_brand_q_90'] = 0.0
+					features['has_bought_brand_a_90'] = 0.0
+					features['has_bought_brand_180'] = 0.0
+					features['has_bought_brand_q_180'] = 0.0
+					features['has_bought_brand_a_180'] = 0.0
 					if offers[ history[2] ][5] == row[5]:
 						features['has_bought_brand'] += 1.0
 						features['has_bought_brand_q'] += float( row[9] )

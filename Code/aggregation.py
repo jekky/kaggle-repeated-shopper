@@ -902,11 +902,15 @@ def aggregate_txns_by_customer_dept(loc_transactions, loc_output):
 	start = datetime.now()
 	agg_result = {}
 
+	last_id = 0
 	for e, line in enumerate( open(loc_transactions) ):
 		if e > 0: #skip header
 			#poor man's csv reader
 			row = line.strip().split(",")
 			product_key = ','.join([row[4],row[5]])
+
+			if last_id != row[0]:
+				product_keys = {}
 		
 			key = ','.join([row[0], row[2]])
 			#print key
@@ -915,19 +919,19 @@ def aggregate_txns_by_customer_dept(loc_transactions, loc_output):
 				agg_result[key]["num_of_txn"] += 1
 				
 				# num of customers
-				if product_key not in product_keys:
+				if product_key not in product_keys[key]:
 					agg_result[key]["num_of_products"] += 1
-					product_keys[product_key] = 1
-
+					product_keys[key][product_key] = 1
 			else:
 				agg_result[key] = defaultdict(float)
 				agg_result[key]["num_of_txn"] = 1.0
 
 				#if last_id != row[0]:
-				product_keys = {}
-				product_keys[product_key] = 1
+				product_keys[key] = {}
+				product_keys[key][product_key] = 1
 				agg_result[key]["num_of_products"] = 1.0
 
+			last_id = row[0]
 		if e % 5000000 == 0:
 				print e, datetime.now() - start
 
