@@ -1,0 +1,4 @@
+vw ../Data/train.vw -c -k --passes 20 -l 0.85 -f ../Data/model.vw --loss_function quantile --quantile_tau 0.6
+vw ../Data/test.vw -t -i ../Data/model.vw -p ../Submission/shop.preds.txt
+awk -F " " -v OFS=',' '{ print $2,$1 }' ../Submission/shop.pred.txt > ../Submission/submission.txt
+cat ../Data/testMissing >> ../Submission/submission.txt
