@@ -11,40 +11,7 @@ Some refactoring by Zygmunt Zając <zygmunt@fastml.com>
 
 from datetime import datetime, date
 from collections import defaultdict
-
-loc_offers = "../Data/offers"
-loc_transactions = "../Data/transactions"
-loc_train = "../Data/trainHistory"
-loc_test = "../Data/testHistory"
-
-# will be created
-loc_reduced = "../Data/reduced.csv" 
-loc_out_train = "../Data/train-valid.vw"
-loc_out_test = "../Data/test-valid.vw"
-
-# feature set
-loc_agg_txn_product = "../Data/aggregation/agg_txns_by_product"
-loc_agg_txn_company = "../Data/aggregation/agg_txns_by_company"
-loc_agg_txn_category = "../Data/aggregation/agg_txns_by_category"
-loc_agg_txn_brand = "../Data/aggregation/agg_txns_by_brand"
-loc_agg_txn_company_category = "../Data/aggregation/agg_txns_by_company_category"
-loc_agg_txn_company_brand = "../Data/aggregation/agg_txns_by_company_brand"
-loc_agg_txn_category_brand = "../Data/aggregation/agg_txns_by_category_brand"
-loc_agg_txn_customer = "../Data/aggregation/agg_txns_by_customer"
-loc_agg_txn_chain_product = "../Data/aggregation/agg_txns_by_chain_product"
-loc_agg_txn_chain_company = "../Data/aggregation/agg_txns_by_chain_company"
-loc_agg_txn_chain_category = "../Data/aggregation/agg_txns_by_chain_category"
-loc_agg_txn_chain_brand = "../Data/aggregation/agg_txns_by_chain_brand"
-loc_agg_txn_chain_company_category = "../Data/aggregation/agg_txns_by_chain_company_category"
-loc_agg_txn_chain_company_brand = "../Data/aggregation/agg_txns_by_chain_company_brand"
-loc_agg_txn_chain_category_brand = "../Data/aggregation/agg_txns_by_chain_category_brand"
-loc_agg_txn_chain = "../Data/aggregation/agg_txns_by_chain"
-loc_agg_txn_company_dept = "../Data/aggregation/agg_txns_by_company_dept"
-loc_agg_txn_chain_company_dept = "../Data/aggregation/agg_txns_by_chain_company_dept"
-loc_agg_txn_dept_brand = "../Data/aggregation/agg_txns_by_dept_brand"
-loc_agg_txn_chain_dept_brand = "../Data/aggregation/agg_txns_by_chain_dept_brand"
-loc_agg_txn_customer_dept = "../Data/aggregation/agg_txns_by_customer_dept_all"
-loc_agg_txn_product_dept = "../Data/aggregation/agg_txns_by_product_dept_all"
+from file_path import *
 
 def diff_days(s1,s2):
 	date_format = "%Y-%m-%d"
@@ -198,7 +165,8 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 				#poor man's csv reader
 				row = line.strip().split(",")
 				#write away the features when we get to a new shopper id
-				if last_id != row[0] and e != 1:
+				if last_id != row[0] and e != 1 and \
+					(last_id in train_ids or last_id in test_ids):
 					
 					# update aggregation features
 					key = ','.join([offers[history[2]][3],offers[history[2]][1],offers[history[2]][5]])
@@ -473,12 +441,10 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 					test = False
 					for k, v in features.items():
 						
-						if k == "label" and v == 0.5:
-							#test
-							outline = "1 '" + last_id + " |f" + outline
-							test = True
-						elif k == "label":
+						if k == "label":
 							outline = str(v) + " '" + last_id + " |f" + outline
+							if last_id in test_ids:
+								test = True								
 						else:
 							outline += " " + k+":"+str(v) 
 					outline += "\n"
@@ -503,7 +469,13 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 							features['label'] = 0
 					else:
 						history = test_ids[row[0]]
-						features['label'] = 0.5
+						if len(test_ids)>5:
+							if test_ids[row[0]][5] == "t":
+								features['label'] = 1
+							else:
+								features['label'] = 0
+						else:
+							features['label'] = 0.5
 						
 					#print "label", label 
 					#print "trainhistory", train_ids[row[0]]
@@ -586,6 +558,10 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 							features['has_bought_brand_180'] += 1.0
 							features['has_bought_brand_q_180'] += float( row[9] )
 							features['has_bought_brand_a_180'] += float( row[10] )	
+				else:
+					print row[0] + "not in train/test ids\n"
+
+
 				last_id = row[0]
 				if e % 100000 == 0:
 					print e

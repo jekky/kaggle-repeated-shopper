@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import numpy as np
 
 loc_vw_train = "../Data/train-0518.vw"
