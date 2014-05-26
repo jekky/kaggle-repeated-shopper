@@ -1,0 +1,19 @@
+from file_path import *
+from gen_vw_features import *
+from ioutil import *
+from classification import *
+from sklearn.metrics import auc_score
+
+# generate features
+generate_features(loc_cv_train[0], loc_cv_test[0], loc_reduced, "../Data/cv/cv_train0.vw", "../Data/cv/cv_test0.vw")
+
+# read train/test data
+X, y, train_ids = read_vw_data("../Data/cv/cv_train0.vw")
+X_test, y_test, test_ids = read_vw_data("../Data/cv/cv_test0.vw")
+
+# train model
+clf = random_forest_classification(X, y)
+probs = clf.predict_proba(X_test)[:,1]
+
+#evaluation
+auc_score(y_test, probs)
