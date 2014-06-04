@@ -47,13 +47,15 @@ class Classifier:
 			print "[Info] parameter candidate: " + str(candidate) + "\n"
 			self.init_classifier(candidate)
 			score = self.cross_validate(loc_cv_train, loc_cv_test)
-			if is_better(score, best_score):
+			if self.is_better(score, best_score):
 				optimal_params = candidate
 
 	#
 	def cross_validate(self, loc_cv_train, loc_cv_test):
 		ave_score = 0.0
 		for cv_train, cv_test in zip(loc_cv_train,loc_cv_test):
+			print cv_train + "\n"
+			print cv_test + "\n" 
 			X_train, y_train, cv_train_ids = read_vw_data(cv_train)
 			X_test, y_test, cv_test_ids = read_vw_data(cv_test)
 
