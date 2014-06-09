@@ -68,3 +68,6 @@ loc_agg_txn_product_dept = "../Data/aggregation/agg_txns_by_product_dept_all"
 
 # output submissions
 loc_blending_submission = "../Submission/blending.txt"
+loc_rf_submission = "../Submission/rf.txt"
+loc_et_submission = "../Submission/et.txt"
+loc_gbm_submission = "../Submission/gbm.txt"

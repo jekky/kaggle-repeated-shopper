@@ -7,6 +7,7 @@ from ioutil import *
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 
 clfs = [
@@ -32,7 +33,7 @@ def blending(clfs, loc_train, loc_test, loc_cv_train, loc_cv_test):
 		print j, clf
 
 		blend_test_j = np.zeros([X_test.shape[0], len(loc_cv_train)])
-		for train, test in zip(loc_cv_train, loc_cv_test):
+		for idx, (train, test) in enumerate(zip(loc_cv_train, loc_cv_test)):
 			X_train, y_train, train_ids = read_vw_data(train)
 			X_valid, y_valid, valid_ids = read_vw_data(test)
 
@@ -41,7 +42,7 @@ def blending(clfs, loc_train, loc_test, loc_cv_train, loc_cv_test):
 
 			valid_idx = [all_train_ids.index(id) for id in valid_ids]
 			blend_train[valid_idx, j] = y_valid_preds
-			blend_test_j = clf.predict_proba(X_test)[:,1]
+			blend_test_j[:, idx] = clf.predict_proba(X_test)[:,1]
 
 		blend_test[:,j] = blend_test_j.mean(1)
 
