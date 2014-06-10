@@ -47,13 +47,15 @@ class Classifier:
 			print "[Info] parameter candidate: " + str(candidate) + "\n"
 			self.init_classifier(candidate)
 			score = self.cross_validate(loc_cv_train, loc_cv_test)
-			if is_better(score, best_score):
+			if self.is_better(score, best_score):
 				optimal_params = candidate
 
 	#
 	def cross_validate(self, loc_cv_train, loc_cv_test):
 		ave_score = 0.0
 		for cv_train, cv_test in zip(loc_cv_train,loc_cv_test):
+			print cv_train + "\n"
+			print cv_test + "\n" 
 			X_train, y_train, cv_train_ids = read_vw_data(cv_train)
 			X_test, y_test, cv_test_ids = read_vw_data(cv_test)
 
@@ -76,7 +78,9 @@ class Classifier:
 	def is_better(self, score1, score2):
 		return (score1>score2)
 
-class RFClassifier(Classifier):
+##
+# Subclass for Random Forest
+class RandomForestCLF(Classifier):
 	criterion = None
 	def __init__(self,criterion):
 		self.criterion = criterion
@@ -97,26 +101,47 @@ class RFClassifier(Classifier):
 	def is_better(self, score1, score2):
 		return score1>score2
 
+##
+# Subclass for Extra Tree
+class ExtraTreeCLF(Classifier):
+	criterion = None
+	def __init__(self,criterion):
+		self.criterion = criterion
 
 
-def random_forest_classification(X, y, params):
+	def init_classifier(self, params):
+		self.clf = ExtraTreesClassifier(n_estimators=int(params[0]), \
+									 	  min_samples_split=int(params[1]), \
+								 	 	  min_samples_leaf=int(params[2]), \
+								 	 	  n_jobs=-1, 
+								 	 	  criterion=self.criterion);
 
-	clf = RandomForestClassifier(n_estimators=1000, min_samples_split=10, \
-								 min_samples_leaf=10, n_jobs=-1, criterion='gini');
-	clf.fit(X,y)
+	#
+	def eval_classification(self, label, preds):
+		return roc_auc_score(label, preds)
 
-	return clf
+	#
+	def is_better(self, score1, score2):
+		return score1>score2
 
-def extra_tree_classification(X, y, params):
-	clf = ExtraTreesClassifier(n_estimators=1000, min_samples_split=10, \
-							   min_samples_leaf=10, n_jobs=-1, criterion='entropy');
-	clf.fit(X,y)
 
-	return clf
+##
+# Subclass for Gradient Boosting 
+class GradientBoostingCLF(Classifier):
+	def __init__(self):
+		print "Construct a gradient boosting classifier \n"
 
-def gradient_boosting_classification(X, y, params):
-	clf = GradientBoostingClassifier(learning_rate=0.05, subsample=0.5, \
-										max_depth=6, n_estimators=50);
-	clf.fit(X,y)
 
-	return clf
+	def init_classifier(self, params):
+		self.clf = GradientBoostingClassifier(n_estimators=int(params[0]), \
+											learning_rate=float(params[1]), \
+									 	  	subsample=float(params[2]), \
+								 	 	  	max_depth=int(params[3]));
+
+	#
+	def eval_classification(self, label, preds):
+		return roc_auc_score(label, preds)
+
+	#
+	def is_better(self, score1, score2):
+		return score1>score2

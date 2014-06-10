@@ -469,7 +469,7 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 							features['label'] = 0
 					else:
 						history = test_ids[row[0]]
-						if len(test_ids)>5:
+						if len(history)>5:
 							if test_ids[row[0]][5] == "t":
 								features['label'] = 1
 							else:
@@ -558,8 +558,8 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 							features['has_bought_brand_180'] += 1.0
 							features['has_bought_brand_q_180'] += float( row[9] )
 							features['has_bought_brand_a_180'] += float( row[10] )	
-				else:
-					print row[0] + "not in train/test ids\n"
+				#else:
+					#print row[0] + "not in train/test ids\n"
 
 
 				last_id = row[0]

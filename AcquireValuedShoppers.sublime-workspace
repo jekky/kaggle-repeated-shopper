@@ -1,0 +1,527 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"option",
+				"options"
+			],
+			[
+				"op",
+				"options"
+			],
+			[
+				"arg",
+				"arglist"
+			],
+			[
+				"wr",
+				"wrong_device_id"
+			],
+			[
+				"ext",
+				"extract_fea"
+			],
+			[
+				"de",
+				"device_info"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"seq_sam",
+				"seq_sample_rates"
+			],
+			[
+				"device",
+				"device_sample_rates"
+			],
+			[
+				"sample",
+				"sample_time"
+			],
+			[
+				"devic",
+				"device_sample_time"
+			],
+			[
+				"seq_",
+				"seq_sample_time"
+			],
+			[
+				"device_sam",
+				"device_sample_time"
+			],
+			[
+				"seq",
+				"sequence_info"
+			],
+			[
+				"samp",
+				"sample_time"
+			],
+			[
+				"row",
+				"row_id"
+			],
+			[
+				"dev",
+				"device_id"
+			],
+			[
+				"per",
+				"percent"
+			],
+			[
+				"devi",
+				"devices_sample_num"
+			],
+			[
+				"ques",
+				"question_id"
+			],
+			[
+				"question",
+				"question_ids"
+			],
+			[
+				"se",
+				"sequence_info"
+			],
+			[
+				"est",
+				"est_start_time"
+			],
+			[
+				"test",
+				"test_start_date"
+			],
+			[
+				"lin",
+				"lineID"
+			],
+			[
+				"interrupt",
+				"interrupt_idx"
+			],
+			[
+				"sort",
+				"sorted_idx"
+			],
+			[
+				"conti",
+				"continue"
+			],
+			[
+				"seque",
+				"sequence_ids"
+			],
+			[
+				"seq_s",
+				"seq_sample_size"
+			],
+			[
+				"sa",
+				"sample_size"
+			],
+			[
+				"train",
+				"train_label"
+			],
+			[
+				"train_",
+				"train_fea_f"
+			],
+			[
+				"sta",
+				"stage0_train"
+			],
+			[
+				"stage",
+				"stage0_predict"
+			],
+			[
+				"auc",
+				"auc_score"
+			],
+			[
+				"sam",
+				"sample_num"
+			],
+			[
+				"get_diff_train",
+				"get_diff_train_df_by_model"
+			],
+			[
+				"Sale",
+				"SaleDay"
+			],
+			[
+				"model",
+				"model_list"
+			],
+			[
+				"data",
+				"data_columns"
+			],
+			[
+				"co",
+				"columns"
+			],
+			[
+				"col",
+				"columns"
+			],
+			[
+				"test_pre",
+				"test_predictions2"
+			],
+			[
+				"in",
+				"indices"
+			],
+			[
+				"valid",
+				"valid_predictions2"
+			],
+			[
+				"vali",
+				"valid_predictions1"
+			],
+			[
+				"is",
+				"isnull"
+			],
+			[
+				"val",
+				"valid_predictions"
+			],
+			[
+				"g",
+				"groups_result"
+			],
+			[
+				"convert",
+				"convert_card"
+			],
+			[
+				"p",
+				"poker"
+			],
+			[
+				"connec",
+				"connected_cards"
+			],
+			[
+				"buff",
+				"bufferSize"
+			],
+			[
+				"buf",
+				"bufferSize"
+			],
+			[
+				"bit",
+				"bitDepth"
+			],
+			[
+				"no",
+				"nonOption"
+			],
+			[
+				"non",
+				"nonOptionsCount"
+			],
+			[
+				"SAM",
+				"SAMPLE_RATE"
+			],
+			[
+				"coun",
+				"count"
+			],
+			[
+				"input",
+				"input-string"
+			],
+			[
+				"out",
+				"outputWavFile"
+			],
+			[
+				"S",
+				"SAMPLE_RATE"
+			],
+			[
+				"ou",
+				"outputWavFile"
+			],
+			[
+				"raw",
+				"rawSineDataFile"
+			],
+			[
+				"inpu",
+				"inputString"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 27.0,
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"sideb",
+				"View: Toggle Side Bar"
+			],
+			[
+				"sidebar",
+				"View: Toggle Side Bar"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/yiqhu/Workspace/scala/programming/power/power.sublime-workspace",
+		"/Users/yiqhu/Workspace/scala/programming/power/power.sublime-project",
+		"/Users/yiqhu/Workspace/scala/programming/power/src/main/scala/Power.scala",
+		"/Users/yiqhu/Workspace/scala/programming/power/build.sbt",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Submission/rf_submission.txt",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Data/train-0518.vw",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Data/train-valid.vw",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Submission/submission-0512.txt",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Submission/test_submission.txt",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Submission/submission-0518.txt",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Submission/submission2.txt",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Submission/new.submission.txt",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Submission/sampleSubmission",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Submission/submission-0510.txt",
+		"/Users/yiqhu/python/kaggle/AcquireValuedShoppers/Submission/shop.preds.0510.txt",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/datautil/datautil.py",
+		"/Users/yiqhu/Workspace/Hadoop/MEPandTSC/mep/mep-core/bin/horton/#!:bin:bash",
+		"/Volumes/DATA/backup/laptop/Public/ORIS/doc/cvpr11/TPAMI-extension/camera-ready/sanp-tpami-2column-revised-R2.tex",
+		"/Users/yiqhu/Workspace/Hadoop/cross/result/part-00000",
+		"/Users/yiqhu/Workspace/Hadoop/dfraud_mapred/result/part-00000",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/classifier.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/calc_train_fea.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/testground.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/timestamp_connection.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/train_timestamp_analysis.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/knn_classifier.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/feature/testground.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/calc_test_fea.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/test_timestamp_analysis.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/question_analysis.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/load_fea.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/helpers/check-timestamp.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/helpers/ml.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/helpers/utils.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/feature_extraction.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/helpers/transform_test_data.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/helpers/data.py",
+		"/Users/yiqhu/python/kaggle/AccelerometerBiometricCompetition/Code/helpers/split_data.py",
+		"/Users/yiqhu/Downloads/blend_benchmark.csv",
+		"/Users/yiqhu/python/kaggle/fastiron-kaggle/submission/rm_et_lr.csv",
+		"/Users/yiqhu/python/kaggle/fastiron-kaggle/src/random_forest_benchmark.py",
+		"/Users/yiqhu/python/kaggle/fastiron-kaggle/src/util.py",
+		"/Users/yiqhu/test/adfasd.js",
+		"/Users/yiqhu/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/yiqhu/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/yiqhu/Workspace/scikit-learn/sklearn/ensemble/forest.py",
+		"/Users/yiqhu/Workspace/scikit-learn/sklearn/tree/tree.py",
+		"/Users/yiqhu/Workspace/SonicClient-iOS-2/RIOInterface/RIOInterface.mm",
+		"/Users/yiqhu/Workspace/SWCodeGenerator/src/createSWCode.cpp",
+		"/Users/yiqhu/Workspace/sw-generator/src/createWaveFile.cpp",
+		"/Users/yiqhu/Workspace/SWCodeGenerator/readme.txt",
+		"/Users/yiqhu/Workspace/SWCodeGenerator/src/sineosctest.cpp"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"base",
+			"get",
+			", ",
+			"|t",
+			"repeatProbability",
+			"False",
+			"device_sample_time",
+			"...')",
+			"dID",
+			"n_class",
+			"1",
+			"sublime",
+			"$path",
+			"hand",
+			"kBufferSize",
+			"updateThreshold",
+			"SAMPLERATE"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"\\n"
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"bu",
+				"build.sbt"
+			],
+			[
+				"work",
+				"power.sublime-workspace"
+			],
+			[
+				"",
+				"question_analysis.py"
+			],
+			[
+				"ti",
+				"timestamp_connection.py"
+			],
+			[
+				"ques",
+				"question_analysis.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 236.0,
+	"status_bar_visible": true
+}

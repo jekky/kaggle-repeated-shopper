@@ -4,6 +4,12 @@ loc_transactions = "../Data/transactions"
 loc_train = "../Data/trainHistory"
 loc_test = "../Data/testHistory"
 
+
+## train, test, valid feature files
+# train and test feature file
+loc_train_vw = "../Data/train.vw"
+loc_test_vw = "../Data/test.vw"
+
 # cross validation
 loc_cv_train_raw = ["../Data/cv/cv_train0.csv",
 				"../Data/cv/cv_train1.csv",
@@ -58,3 +64,10 @@ loc_agg_txn_dept_brand = "../Data/aggregation/agg_txns_by_dept_brand"
 loc_agg_txn_chain_dept_brand = "../Data/aggregation/agg_txns_by_chain_dept_brand"
 loc_agg_txn_customer_dept = "../Data/aggregation/agg_txns_by_customer_dept_all"
 loc_agg_txn_product_dept = "../Data/aggregation/agg_txns_by_product_dept_all"
+
+
+# output submissions
+loc_blending_submission = "../Submission/blending.txt"
+loc_rf_submission = "../Submission/rf.txt"
+loc_et_submission = "../Submission/et.txt"
+loc_gbm_submission = "../Submission/gbm.txt"
