@@ -177,6 +177,7 @@ def aggregate_txns_by_brand(loc_transactions, loc_output):
 			line = key
 
 			for k, v in features.items():
+				print str(k) + ": " + str(v)
 				line += "," + str(v)
 
 			line += "\n"
@@ -986,3 +987,228 @@ def aggregate_txns_by_product_dept(loc_transactions, loc_output):
 
 			line += "\n"
 			output.write(line)		
+
+
+###
+###	
+def aggregate_by_customer_dept(loc_transactions, loc_output):
+	start = datetime.now()
+	agg_result = {}
+
+	for e, line in enumerate( open(loc_transactions) ):
+		if e > 0: #skip header
+			#poor man's csv reader
+			row = line.strip().split(",")
+			customer_dept_key = ','.join(row[0],row[2])
+			product_key = ','.join([row[4],row[3],row[5]])
+
+			if last_id != row[0]:
+				product_keys = {}
+
+			#print key
+			if customer_dept_key in agg_result:
+				# num of txn
+				if agg_result[product_key] :
+					agg_result[key]["dept"] += str(agg_result[key]["dept"]) + "," + str(row[2])
+				
+			else:
+				product_keys = {}
+				agg_result[customer_dept_key] = defaultdict(float)
+
+			last_id = row[0]
+
+		if e % 5000000 == 0:
+				print e, datetime.now() - start
+
+
+	# output agg_result
+	with open(loc_output, "wb") as output:
+		for key, features in agg_result.items():
+			line = key
+
+			for k, v in features.items():
+				line += "," + str(v)
+
+			line += "\n"
+			output.write(line)
+
+###
+###	
+def aggregate_txns_by_customer_dept_company_brand(loc_transactions, loc_output):
+	start = datetime.now()
+	agg_result = {}
+
+	last_id = 0
+	for e, line in enumerate( open(loc_transactions) ):
+		if e > 0: #skip header
+			#poor man's csv reader
+			row = line.strip().split(",")
+			key = ','.join([row[0],row[2],row[4],row[5]])
+		
+			#print key
+			if key in agg_result:
+				# num of txn
+				agg_result[key]["num_of_txn"] += 1.0
+
+			else:
+				agg_result[key] = defaultdict(float)
+				agg_result[key]["num_of_txn"] = 1.0
+		if e % 5000000 == 0:
+				print e, datetime.now() - start
+
+
+	# output agg_result
+	with open(loc_output, "wb") as output:
+		for key, features in agg_result.items():
+			line = key
+
+			for k, v in features.items():
+				line += "," + str(v)
+
+			line += "\n"
+			output.write(line)
+
+###
+###	
+def aggregate_txns_by_customer_dept_brand(loc_transactions, loc_output):
+	start = datetime.now()
+	agg_result = {}
+
+	last_id = 0
+	for e, line in enumerate( open(loc_transactions) ):
+		if e > 0: #skip header
+			#poor man's csv reader
+			row = line.strip().split(",")
+			key = ','.join([row[0],row[2],row[5]])
+		
+			#print key
+			if key in agg_result:
+				# num of txn
+				agg_result[key]["num_of_txn"] += 1.0
+				
+			else:
+				agg_result[key] = defaultdict(float)
+				agg_result[key]["num_of_txn"] = 1.0
+		if e % 5000000 == 0:
+				print e, datetime.now() - start
+
+
+	# output agg_result
+	with open(loc_output, "wb") as output:
+		for key, features in agg_result.items():
+			line = key
+
+			for k, v in features.items():
+				line += "," + str(v)
+
+			line += "\n"
+			output.write(line)
+
+###
+###	
+def aggregate_txns_by_customer_dept_company_brand(loc_transactions, loc_output):
+	start = datetime.now()
+	agg_result = {}
+
+	last_id = 0
+	for e, line in enumerate( open(loc_transactions) ):
+		if e > 0: #skip header
+			#poor man's csv reader
+			row = line.strip().split(",")
+			key = ','.join([row[0],row[2],row[4],row[5]])
+		
+			#print key
+			if key in agg_result:
+				# num of txn
+				agg_result[key]["num_of_txn"] += 1.0
+				
+			else:
+				agg_result[key] = defaultdict(float)
+				agg_result[key]["num_of_txn"] = 1.0
+		if e % 5000000 == 0:
+				print e, datetime.now() - start
+
+
+	# output agg_result
+	with open(loc_output, "wb") as output:
+		for key, features in agg_result.items():
+			line = key
+
+			for k, v in features.items():
+				line += "," + str(v)
+
+			line += "\n"
+			output.write(line)
+
+###
+###	
+def aggregate_txns_by_customer_dept(loc_transactions, loc_output):
+	start = datetime.now()
+	agg_result = {}
+
+	last_id = 0
+	for e, line in enumerate( open(loc_transactions) ):
+		if e > 0: #skip header
+			#poor man's csv reader
+			row = line.strip().split(",")
+			key = ','.join([row[0],row[2]])
+		
+			#print key
+			if key in agg_result:
+				# num of txn
+				agg_result[key]["num_of_txn"] += 1.0
+				
+			else:
+				agg_result[key] = defaultdict(float)
+				agg_result[key]["num_of_txn"] = 1.0
+		if e % 5000000 == 0:
+				print e, datetime.now() - start
+
+
+	# output agg_result
+	with open(loc_output, "wb") as output:
+		for key, features in agg_result.items():
+			line = key
+
+			for k, v in features.items():
+				line += "," + str(v)
+
+			line += "\n"
+			output.write(line)
+
+
+###
+###	
+def aggregate_dept_by_category_company_brand(loc_transactions, loc_output):
+	start = datetime.now()
+	agg_result = {}
+
+	last_id = 0
+	for e, line in enumerate( open(loc_transactions) ):
+		if e > 0: #skip header
+			#poor man's csv reader
+			row = line.strip().split(",")
+			key = ','.join([row[3],row[4],row[5]])
+		
+			#print key
+			if key in agg_result:
+				# num of txn
+				if row[2] != agg_result[key]["dept"]:
+					print "[Warning] Product belongs to multiple departments"	
+			else:
+				agg_result[key] = {}
+				agg_result[key]["dept"] = row[2]
+		if e % 5000000 == 0:
+				print e, datetime.now() - start
+
+
+	# output agg_result
+	with open(loc_output, "wb") as output:
+		for key, features in agg_result.items():
+			line = key
+
+			for k, v in features.items():
+				line += "," + str(v)
+
+			line += "\n"
+			output.write(line)

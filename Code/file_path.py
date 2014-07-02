@@ -35,11 +35,17 @@ loc_cv_test_vw = ["../Data/cv/cv_test0.vw",
 			   "../Data/cv/cv_test3.vw",
 			   "../Data/cv/cv_test4.vw"]
 
+loc_cv_test_preds = ["../Data/cv/cv_test0.pred.txt",
+					"../Data/cv/cv_test1.pred.txt",
+					"../Data/cv/cv_test2.pred.txt",
+					"../Data/cv/cv_test3.pred.txt",
+					"../Data/cv/cv_test4.pred.txt"]
+
 
 # will be created
 loc_reduced = "../Data/reduced.csv" 
-loc_out_train = "../Data/train-valid.vw"
-loc_out_test = "../Data/test-valid.vw"
+loc_out_train = "../Data/train-valid-0618.vw"
+loc_out_test = "../Data/test-valid-0618.vw"
 
 # feature set
 loc_agg_txn_product = "../Data/aggregation/agg_txns_by_product"
@@ -62,8 +68,10 @@ loc_agg_txn_company_dept = "../Data/aggregation/agg_txns_by_company_dept"
 loc_agg_txn_chain_company_dept = "../Data/aggregation/agg_txns_by_chain_company_dept"
 loc_agg_txn_dept_brand = "../Data/aggregation/agg_txns_by_dept_brand"
 loc_agg_txn_chain_dept_brand = "../Data/aggregation/agg_txns_by_chain_dept_brand"
-loc_agg_txn_customer_dept = "../Data/aggregation/agg_txns_by_customer_dept_all"
-loc_agg_txn_product_dept = "../Data/aggregation/agg_txns_by_product_dept_all"
+loc_agg_txn_customer_dept = "../Data/aggregation/agg_txns_by_customer_dept"
+loc_agg_txn_product_dept = "../Data/aggregation/agg_txns_by_product_dept"
+loc_agg_txn_customer_dept_company_brand = "../Data/aggregation/agg_txns_by_customer_dept_company_brand"
+loc_agg_dept_category_company_brand = "../Data/aggregation/agg_dept_by_category_company_brand"
 
 
 # output submissions

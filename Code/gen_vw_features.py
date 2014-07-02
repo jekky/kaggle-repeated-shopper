@@ -138,6 +138,17 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 		row = line.strip().split(",")
 		agg_txn_by_product_dept[','.join([row[0],row[1],row[2]])] = row
 
+	agg_dept_by_category_company_brand = {}
+	for e, line in enumerate( open(loc_agg_dept_category_company_brand) ):
+		row = line.strip().split(",")
+		agg_dept_by_category_company_brand[','.join([row[0],row[1],row[2]])] = row
+
+	agg_txn_by_customer_dept_company_brand = {}
+	for e, line in enumerate( open(loc_agg_txn_customer_dept_company_brand) ):
+		row = line.strip().split(",")
+		agg_txn_by_customer_dept_company_brand[','.join([row[0],row[1],row[2],row[3]])] = row
+
+
 
 	#keep two dictionaries with the shopper id's from test and train
 	train_ids = {}
@@ -191,6 +202,7 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 					features['brand_num_of_txn'] = agg_txn_by_brand[key][2]
 					features['brand_num_of_customer'] = agg_txn_by_brand[key][1]
 					#features['brand_average_txn'] = float(agg_txn_by_brand[key][2])/float(agg_txn_by_brand[key][1])
+					#print "For " + key + ": brand_num_of_txn=" + features['brand_num_of_txn'] + ", brand_num_of_customer=" + features['brand_num_of_customer']
 					#features['brand_total_quantity'] = agg_txn_by_brand[key][3]
 
 					key = ','.join([offers[history[2]][3],offers[history[2]][1]])
@@ -308,6 +320,20 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 					#	features['customer_dept_num_of_txn'] = agg_txn_by_customer_dept[key][3]
 					#features['chain_dept_brand_average_txn'] = float(agg_txn_by_chain_dept_brand[key][4])/float(agg_txn_by_chain_dept_brand[key][3])
 					#features['chain_dept_brand_average_quantity'] = float(agg_txn_by_chain_dept_brand[key][5])/float(agg_txn_by_chain_dept_brand[key][3])
+
+					product_key = ','.join([offers[history[2]][1],offers[history[2]][3],offers[history[2]][5]])
+					key = ','.join([last_id,agg_dept_by_category_company_brand[product_key][3],offers[history[2]][3],offers[history[2]][5]])
+					if key in agg_txn_by_customer_dept_company_brand:
+						features['customer_dept_company_brand_num_of_txn'] = agg_txn_by_customer_dept_company_brand[key][4]
+					else:
+						features['customer_dept_company_brand_num_of_txn'] = 0.0
+
+					product_key = ','.join([offers[history[2]][1],offers[history[2]][3],offers[history[2]][5]])
+					key = ','.join([last_id,agg_dept_by_category_company_brand[product_key][3]])
+					if key in agg_txn_by_customer_dept:
+						features['customer_dept_num_of_txn'] = agg_txn_by_customer_dept[key][2]
+					else:
+						features['customer_dept_company_brand_num_of_txn'] = 0.0
 
 
 					#generate negative features
@@ -440,6 +466,8 @@ def generate_features(loc_train, loc_test, loc_transactions, loc_out_train, loc_
 					outline = ""
 					test = False
 					for k, v in features.items():
+						if k == "brand_num_of_customer":
+							print "brand_num_of_customer: " + str(v)
 						
 						if k == "label":
 							outline = str(v) + " '" + last_id + " |f" + outline
