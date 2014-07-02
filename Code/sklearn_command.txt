@@ -3,17 +3,45 @@ from gen_vw_features import *
 from ioutil import *
 from classification import *
 from sklearn.metrics import auc_score
+from aggregation import *
+
+# generate aggregated data
+aggregate_txns_by_product(loc_reduced, "../Data/aggregation/agg_txns_by_product")
+aggregate_txns_by_company(loc_reduced, "../Data/aggregation/agg_txns_by_company")
+aggregate_txns_by_category(loc_reduced, "../Data/aggregation/agg_txns_by_category")
+aggregate_txns_by_brand(loc_reduced, "../Data/aggregation/agg_txns_by_brand")
+aggregate_txns_by_company_category(loc_reduced, "../Data/aggregation/agg_txns_by_company_category")
+aggregate_txns_by_company_brand(loc_reduced, "../Data/aggregation/agg_txns_by_company_brand")
+aggregate_txns_by_category_brand(loc_reduced, "../Data/aggregation/agg_txns_by_category_brand")
+aggregate_txns_by_customer(loc_reduced, "../Data/aggregation/agg_txns_by_customer")
+
+aggregate_txns_by_chain_product(loc_reduced, "../Data/aggregation/agg_txns_by_chain_product")
+aggregate_txns_by_chain_company(loc_reduced, "../Data/aggregation/agg_txns_by_chain_company")
+aggregate_txns_by_chain_category(loc_reduced, "../Data/aggregation/agg_txns_by_chain_category")
+aggregate_txns_by_chain_brand(loc_reduced, "../Data/aggregation/agg_txns_by_chain_brand")
+aggregate_txns_by_chain_company_category(loc_reduced, "../Data/aggregation/agg_txns_by_chain_company_category")
+aggregate_txns_by_chain_company_brand(loc_reduced, "../Data/aggregation/agg_txns_by_chain_company_brand")
+aggregate_txns_by_chain_category_brand(loc_reduced, "../Data/aggregation/agg_txns_by_chain_category_brand")
+aggregate_txns_by_chain(loc_reduced, "../Data/aggregation/agg_txns_by_chain")
+
+aggregate_txns_by_company_dept(loc_reduced, "../Data/aggregation/agg_txns_by_company_dept")
+aggregate_txns_by_chain_company_dept(loc_reduced, "../Data/aggregation/agg_txns_by_chain_company_dept")
+aggregate_txns_by_dept_brand(loc_reduced, "../Data/aggregation/agg_txns_by_dept_brand")
+aggregate_txns_by_chain_dept_brand(loc_reduced, "../Data/aggregation/agg_txns_by_chain_dept_brand")
+aggregate_txns_by_customer_dept(loc_reduced, "../Data/aggregation/agg_txns_by_customer_dept_all")
+aggregate_txns_by_product_dept(loc_reduced, "../Data/aggregation/agg_txns_by_product_dept_all")
+
 
 # generate features
-generate_features(loc_cv_train[0], loc_cv_test[0], loc_reduced, "../Data/cv/cv_train0.vw", "../Data/cv/cv_test0.vw"
+generate_features(loc_cv_train_raw[0], loc_cv_test_raw[0], loc_reduced, loc_cv_train_vw[0], loc_cv_test_vw[0])
 
 # read train/test data
-X, y, train_ids = read_vw_data("../Data/cv/cv_train0.vw")
-X_test, y_test, test_ids = read_vw_data("../Data/cv/cv_test0.vw")
+X, y, train_ids = read_vw_data(loc_cv_train_vw[0])
+X_test, y_test, test_ids = read_vw_data(loc_cv_test_vw[0])
 
 # train model
-clf = random_forest_classification(X, y)
+clf = random_forest_classification(X, y, [])
 probs = clf.predict_proba(X_test)[:,1]
 
 #evaluation
-auc_score(y_test, probs)
+roc_auc_score(y_test, probs)
